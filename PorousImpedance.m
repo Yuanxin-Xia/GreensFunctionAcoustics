@@ -162,8 +162,10 @@ for i = 1:N
         error('Unsupported configuration. Use 2 for double-layer or 3 for triple-layer.');
     end
     
+    % Convert to specific surface impedance
+    Z_in(i) = Z_in(i)./(rho0 * c0);
     % Compute absorption coefficient
-    ac(i) = 1 - abs((Z_in(i) - rho0 * c0) / (Z_in(i) + rho0 * c0))^2;
+    ac(i) = 1 - abs((Z_in(i) - 1) / (Z_in(i) + 1))^2;
 end
 function alpha = RigidwallImpedance(f)
     % Experimental validation and uncertainty quantification in wave-based computational room acoustics
